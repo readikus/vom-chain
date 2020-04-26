@@ -1,20 +1,20 @@
 import unittest
 import numpy
-from build_transition_matrix import MarkovModel
+from build_transition_matrix import MarkovChain
 from fractions import Fraction
 
-class TestMarkovModel(unittest.TestCase):
+class TestMarkovChain(unittest.TestCase):
 
     def test_tokenize_unigrams(self):
 
-        mm = MarkovModel()
+        mm = MarkovChain()
         unigrams = mm.tokenize('a b c', 1)
         expected_unigrams = [('a',), ('b',), ('c',)]
         self.assertEqual(unigrams, expected_unigrams)
 
     def test_tokenize_trigrams(self):
 
-        mm = MarkovModel()
+        mm = MarkovChain()
         unigrams = mm.tokenize('a b c', 3)
         expected_unigrams = [('<S>', '<S>', 'a'),
             ('<S>', 'a', 'b'),
@@ -25,7 +25,7 @@ class TestMarkovModel(unittest.TestCase):
 
     def test_build_vocab(self):
 
-        mm = MarkovModel()
+        mm = MarkovChain()
         vocab = mm.build_vocab(['a b c'], 3)
         expected_vocab = [('b',),
             ('<S>', '<S>'),
@@ -40,7 +40,7 @@ class TestMarkovModel(unittest.TestCase):
         self.assertEqual(sorted(vocab), sorted(expected_vocab))
 
     def test_train(self):
-        mm = MarkovModel()
+        mm = MarkovChain()
         mm.train(['a b c', 'd e f'], 3)
         expected = [[Fraction(1, 1), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
             [0.0, Fraction(1, 1), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],

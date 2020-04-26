@@ -4,7 +4,6 @@ A variable order Markov (VOM) chain model in python
 
 ## Roadmap
 
-- Rename to `MarkovChain`
 - Docs
 - 100% test coverage
 - Sparse matrix

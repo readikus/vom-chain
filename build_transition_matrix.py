@@ -8,7 +8,7 @@ from nltk.util import ngrams
 from collections import Counter
 
 # this is BASIC - not strictly a probability model, but will have the same affecr
-class MarkovModel():
+class MarkovChain():
     
     def __init__(self):
         self.words = []
@@ -122,7 +122,7 @@ def load_tweets(file_name):
         return data
 
 def build_transition_matrix(tweets):
-    model = MarkovModel()
+    model = MarkovChain()
     model.train(tweets, 3)
     return model
 
@@ -142,7 +142,7 @@ def main():
     #print(list(ng))
     #exit()
 
-    #markov_model = MarkovModel()
+    #markov_model = MarkovChain()
 
     #markov_model.tokenize(s, 3)
 
